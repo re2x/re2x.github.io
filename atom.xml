@@ -4,9 +4,9 @@
   <subtitle>print &quot;hello world&quot;</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://re2x.com/"/>
+  <link href="http://www.re2x.com/"/>
   <updated>2016-07-15T07:54:06.000Z</updated>
-  <id>http://re2x.com/</id>
+  <id>http://www.re2x.com/</id>
   
   <author>
     <name>rex_lin</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://re2x.com/2016/07/06/hello-world/"/>
-    <id>http://re2x.com/2016/07/06/hello-world/</id>
+    <link href="http://www.re2x.com/2016/07/06/hello-world/"/>
+    <id>http://www.re2x.com/2016/07/06/hello-world/</id>
     <published>2016-07-06T02:00:56.000Z</published>
     <updated>2016-07-15T07:54:06.000Z</updated>
     
@@ -39,10 +39,10 @@
     
     </summary>
     
-      <category term="Test Categories" scheme="http://re2x.com/categories/Test-Categories/"/>
+      <category term="Test Categories" scheme="http://www.re2x.com/categories/Test-Categories/"/>
     
     
-      <category term="Test" scheme="http://re2x.com/tags/Test/"/>
+      <category term="Test" scheme="http://www.re2x.com/tags/Test/"/>
     
   </entry>
   
