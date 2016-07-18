@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>最近7日数据</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style type="text/css">
+		* {padding: 0; margin: 0;}
+	</style>
+</head>
+<body>
+<script src="jquery-2.2.4.min.js"></script>
+
+<script src="highcharts.js"></script>
+
+<div id="container" style="min-width: 300px; min-height: 250px; height: 100vh; margin: 0 auto"></div>
+
+<script type="text/javascript">
+
+function rnd(min, max) {
+  return Math.floor(Math.random() * max + min);
+}
+
+function rndMoney() {
+  return rnd(1000, 99999);
+}
+
+function rndAmount() {
+  return rnd(10, 999);
+}
+
+function createTestData() {
+  var now = new Date();
+  var dates = [];
+  var money = [];
+  var amount = [];
+  for (var i = 0; i < 7; i++) {
+    var cur = new Date(now - 86400000 * (6 - i));
+    dates[i] = (cur.getMonth() + 1) + '-' + cur.getDate();
+    money[i] = {
+      'name': dates[i],
+      'x': i,
+      'y': rndMoney()
+    };
+    amount[i] = {
+      'name': dates[i],
+      'x': i,
+      'y': rndAmount()
+    };
+  }
+  //var dates = ['7-1', '7-2', '7-3', '7-4', '7-5', '7-7', '7-7'];
+  /* for (var i = 0; i < money.length; i++) {
+  // 金额订单数的关系
+  amount[i] = money[i] / amount[i] * 80;
+}
+*/
+
+  loadChart(dates, money, amount);
+}
+
+var backgroundColor = '#ECF7FC';
+var amountLineColor = '#F1C36C';
+var amountBackgrounpColor = '#EEE8CC';
+var moneyLineColor = '#61BDE3';
+var moneyBackgrounpColor = '#BBE9F9';
+var gridLineColor = '#F3FBFE';
+var crosshairColor = '#61BDE3';
+
+function loadChart(dates, money, amount) {
+  $('#container').highcharts({
+    credits: {
+      enabled: false // 不显示highcharts版权信息
+    },
+    chart: {
+      plotBackgroundColor: backgroundColor,
+      type: 'areaspline',
+      spacing: [10, -10, 5, -10], // 控制图表和xy轴的距离
+    },
+    colors: [moneyLineColor, amountLineColor],
+    title: null,
+    legend: {
+      enabled: true,
+      floating: true,
+      verticalAlign: 'top',
+      align: 'right',
+      x: -40,
+      y: 5,
+    },
+    xAxis: {
+      tickInterval: 1,
+      labels: {
+        formatter: function() {
+          return dates[this.value];
+        }
+      },
+      crosshair: {
+        dashStyle: 'ShortDash',
+        color: crosshairColor,
+        zIndex: 999,
+      },
+      //categories: dates,
+      tickWidth: 0,
+      lineColor: '#FFFFFF',
+    },
+    yAxis: [{
+      title: null,
+      offset: -15,
+      zIndex: -1,
+      gridLineColor: gridLineColor,
+      labels: {
+        style: {
+          color: moneyLineColor,
+        },
+        formatter: function() {
+          if (this.value > 999) {
+            return this.value / 1000 + 'k';
+          } else {
+            return this.value;
+          }
+        }
+      }
+    }, {
+      title: null,
+      offset: -15,
+      zIndex: -1,
+      gridLineColor: gridLineColor,
+      opposite: true,
+      labels: {
+        style: {
+          color: amountLineColor,
+        },
+        formatter: function() {
+          return this.value;
+        }
+      }
+    }],
+    tooltip: {
+      borderRadius: 8,
+      //crosshairs: true,
+      shared: true,
+    },
+    plotOptions: {
+      areaspline: {
+      	states: {
+            hover: {
+              lineWidth: 1,
+            }
+        },
+        marker: {
+          enabled: true,
+          symbol: 'circle',
+          lineWidth: 1,
+          radius: 3,
+          states: {
+            hover: {
+              enabled: true,
+              lineWidth: 1,
+            }
+          }
+        },
+      },
+      series: {
+        events: {
+          legendItemClick: function() {
+            return false;
+          }
+        }
+      },
+    },
+    series: [{
+      name: '订单金额',
+      data: money,
+      yAxis: 0,
+      zIndex: 99,
+      lineWidth: 1,
+      lineColor: moneyLineColor,
+      marker: {
+        fillColor: moneyBackgrounpColor,
+        lineColor: moneyLineColor,
+      },
+      tooltip: {
+        headerFormat: '<b>{point.key}</b><br/>',
+        pointFormat: '{series.name}：<b>{point.y:.0f}</b><br/>'
+      },
+      fillColor: {
+        linearGradient: {
+          x1: 0,
+          y1: 0,
+          x2: 0,
+          y2: 1
+        },
+        stops: [
+          [0, moneyBackgrounpColor],
+          [1, Highcharts.Color(moneyBackgrounpColor).setOpacity(0).get('rgba')]
+        ]
+      },
+    }, {
+      name: '订单个数',
+      data: amount,
+      yAxis: 1,
+      zIndex: 9,
+      lineWidth: 1,
+      lineColor: amountLineColor,
+      marker: {
+        fillColor: amountBackgrounpColor,
+        lineColor: amountLineColor,
+      },
+      tooltip: {
+        headerFormat: '<b>{point.key}</b><br/>',
+        pointFormat: '{series.name}：<b>{point.y:.0f}</b><br/>'
+      },
+      fillColor: {
+        linearGradient: {
+          x1: 0,
+          y1: 0,
+          x2: 0,
+          y2: 1
+        },
+        stops: [
+          [0, amountBackgrounpColor],
+          [1, Highcharts.Color(amountBackgrounpColor).setOpacity(0).get('rgba')]
+        ]
+      },
+    }]
+  });
+}
+
+function realDataTest(){
+  // 接口返回的数据
+  var result = {"result":"0","allSum":"12","currentDayMoney":"0","currentDaySum":"6","currentMonthMoney":"0.0","reason":"","allMoney":"0","list":[{"day":"14","money":"0","month":"7","sum":"6","year":"2016"},{"day":"13","money":"0","month":"7","sum":"6","year":"2016"},{"day":"12","money":"0","month":"7","sum":"0","year":"2016"},{"day":"11","money":"0","month":"7","sum":"0","year":"2016"},{"day":"10","money":"0","month":"7","sum":"0","year":"2016"},{"day":"09","money":"0","month":"7","sum":"0","year":"2016"},{"day":"08","money":"0","month":"7","sum":"0","year":"2016"}],"currentMonthSum":"12"};
+  var dates = [];
+  var money = [];
+  var amount = [];
+  for (var i = 0; i < result.list.length; i++) {
+    var curItem = result.list[result.list.length - i - 1];
+    dates[i] = curItem.month + "-" + curItem.day;
+    money[i] = {
+      'name': dates[i],
+      'x': i,
+      'y': parseInt(curItem.money)
+    };
+    amount[i] = {
+      'name': dates[i],
+      'x': i,
+      'y': parseInt(curItem.sum)
+    };
+  }
+  loadChart(dates, money, amount);
+}
+
+$(function() {
+  //createTestData();
+  realDataTest();
+});
+
+</script>
+</body>
+</html>
