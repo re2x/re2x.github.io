@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>最近7日数据</title>
+    <title>血压数据</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type="text/css">
@@ -33,14 +33,15 @@
         return Math.floor(Math.random() * max + min);
     }
 
-    function createTestData() {
+    function createTestData(allCount, showCount) {
+        var interval = parseInt(allCount / showCount);
         var now = new Date();
         var dates = [];
         var dpData = [];
         var spData = [];
         var hrData = [];
-        for (var i = 0; i < 7; i++) {
-            var cur = new Date(now - 86400000 * (6 - i));
+        for (var i = showCount - 1; i >= 0; i--) {
+            var cur = new Date(now - 86400000 * (interval * (showCount - i - 1)));
             dates[i] = (cur.getMonth() + 1) + '-' + cur.getDate();
             dpData[i] = {
                 'name': dates[i],
@@ -104,8 +105,11 @@
                 y: 0,
                 //labelFormat: '<span style="color:{color}">{name}</span> <b>{point.y}</b><br/>',
                 labelFormatter: function () {
-                    if(this.point.y == undefined){return '<span style="color:' + this.color + '">' +
-                        this.name + '</span>'};
+                    if (this.point.y == undefined) {
+                        return '<span style="color:' + this.color + '">' +
+                                this.name + '</span>'
+                    }
+                    ;
                     return formatLegendValue(this.name, this.point.color, this.point.y);
                 },
             },
@@ -349,8 +353,22 @@
         loadChart(dates, money, amount);
     }
 
+    //获取url中的参数
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return unescape(r[2]);
+        return null; //返回参数值
+    }
+
     $(function () {
-        createTestData();
+        var all = getUrlParam("all");
+        var show = getUrlParam("show")
+        if (all == undefined || show == undefined) {
+            createTestData(7, 7);
+        } else {
+            createTestData(all, show);
+        }
         //realDataTest();
     });
 
