@@ -33,15 +33,17 @@
         return Math.floor(Math.random() * max + min);
     }
 
-    function createTestData(allCount, showCount) {
-        var interval = parseInt(allCount / showCount);
+    function createTestData(showCount) {
         var now = new Date();
         var dates = [];
         var dpData = [];
         var spData = [];
         var hrData = [];
-        for (var i = showCount - 1; i >= 0; i--) {
-            var cur = new Date(now - 86400000 * (interval * (showCount - i - 1)));
+//        for (var i = showCount - 1; i >= 0; i--) {
+//            var cur = new Date(now - 86400000 * (interval * (showCount - i - 1)));
+//            dates[i] = cur;//(cur.getMonth() + 1) + '-' + cur.getDate();
+        for (var i = 0; i < showCount; i++) {
+            var cur = new Date(now - 86400000 * (showCount - 1 - i));
             dates[i] = (cur.getMonth() + 1) + '-' + cur.getDate();
             dpData[i] = {
                 'name': dates[i],
@@ -59,13 +61,6 @@
                 'y': rnd(60, 120)
             };
         }
-        //var dates = ['7-1', '7-2', '7-3', '7-4', '7-5', '7-7', '7-7'];
-        /* for (var i = 0; i < money.length; i++) {
-         // 金额订单数的关系
-         amount[i] = money[i] / amount[i] * 80;
-         }
-         */
-
         loadChart(dates, dpData, spData, hrData);
     }
 
@@ -118,8 +113,9 @@
                 gridLineColor: gridLineColor,
                 gridLineWidth: 1,
                 labels: {
+                    step: 1,
                     formatter: function () {
-                        return dates[this.value];
+                        return formatDate(dates.length, this.value, dates[this.value]);
                     }
                 },
                 crosshair: {
@@ -362,12 +358,9 @@
     }
 
     $(function () {
-        var all = getUrlParam("all");
         var show = getUrlParam("show")
-        if (all == undefined || show == undefined) {
-            createTestData(7, 7);
-        } else {
-            createTestData(all, show);
+        if (show != undefined) {
+            createTestData(show);
         }
         //realDataTest();
     });

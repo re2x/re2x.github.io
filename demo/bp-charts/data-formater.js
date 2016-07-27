@@ -5,7 +5,7 @@ function formatLegendValue(name, color, value) {
         //TODO:实现完整算法
         if (value < 60) {
             tmp = '<span style="color:' + warnColor + '">' + value + '↓</span>';
-        }else if(value > 90){
+        } else if (value > 90) {
             tmp = '<span style="color:' + warnColor + '">' + value + '↑</span>';
         }
     }
@@ -13,17 +13,30 @@ function formatLegendValue(name, color, value) {
         //TODO:实现完整算法
         if (value < 90) {
             tmp = '<span style="color:' + warnColor + '">' + value + '↓</span>';
-        }else if(value > 140){
+        } else if (value > 140) {
             tmp = '<span style="color:' + warnColor + '">' + value + '↑</span>';
         }
     } else if (name == "心率") {
         //TODO:实现完整算法
         if (value < 60) {
             tmp = '<span style="color:' + warnColor + '">' + value + '↓</span>';
-        }else if(value > 100){
+        } else if (value > 100) {
             tmp = '<span style="color:' + warnColor + '">' + value + '↑</span>';
         }
     }
     return '<span style="color:' + color + '">' +
         name + '</span> <b>' + tmp + '</b><br/>';
+}
+
+function formatDate(count, index, date) {
+    if (index != 0 &&
+        index != count - 1 &&
+        count > 7) {
+        //大于7天,只显示10个
+        var interval = parseInt(Math.ceil(count / 10));
+        if (index % interval != 0) {
+            return "";
+        }
+    }
+    return date;
 }
