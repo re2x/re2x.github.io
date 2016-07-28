@@ -44,19 +44,23 @@
 //            dates[i] = cur;//(cur.getMonth() + 1) + '-' + cur.getDate();
         for (var i = 0; i < showCount; i++) {
             var cur = new Date(now - 86400000 * (showCount - 1 - i));
-            dates[i] = (cur.getMonth() + 1) + '-' + cur.getDate();
+            dates[i] = cur.getDate() + "日";
+            var time = (cur.getMonth() + 1) + '月' + cur.getDate() + "日 " + cur.getHours() + ":" + cur.getMinutes() + ":" + cur.getSeconds();
             dpData[i] = {
-                'name': dates[i],
-                'x': i,
-                'y': rnd(20, 110)
+                'name': dates[i],  // x坐标显示的日期
+                'time': time,      // 顶部显示的测量时间
+                'x': i,            // 序号
+                'y': rnd(20, 110)  // 测量值
             };
             spData[i] = {
                 'name': dates[i],
+                'time': time,
                 'x': i,
                 'y': dpData[i].y + rnd(30, 80)
             };
             hrData[i] = {
                 'name': dates[i],
+                'time': time,
                 'x': i,
                 'y': rnd(60, 120)
             };
@@ -192,7 +196,7 @@
                             mouseOver: function () {
                                 var chart = this.series.chart;
                                 if (!chart.lbl) {
-                                    chart.lbl = chart.renderer.label('', document.documentElement.clientWidth / 2 - 30, 2)
+                                    chart.lbl = chart.renderer.label('', document.documentElement.clientWidth / 2 - 85, 2)
                                             .attr({
                                                 padding: 10,
                                                 r: 0,
@@ -206,7 +210,7 @@
                                 chart.lbl
                                         .show()
                                         .attr({
-                                            text: this.name
+                                            text: this.time + " 测量"
                                         });
                             },
                         }
@@ -295,6 +299,8 @@
                     ]
                 },
             }]
+        }, function (chart) {
+            //console.debug(chart.tooltip.refresh([chart.series[0].data[0]]));
         });
     }
 
