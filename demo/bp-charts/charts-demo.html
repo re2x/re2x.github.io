@@ -68,9 +68,9 @@
     var dpLineColor = '#30B5FC';
     var dpBackgroupColor = '#4FC9FC';
     var spLineColor = '#1FC797';
-    var spBackgrounpColor = '#65E4C3';
+    var spBackgroundColor = '#65E4C3';
     var hrLineColor = '#F1C36C';
-    var hrBackgrounpColor = '#EEE8CC';
+    var hrBackgroundColor = '#EEE8CC';
     var gridLineColor = '#F9F9F9';
     var dpYTickColor = '#CCCCCC';
     var crosshairColor = '#61BDE3';
@@ -97,7 +97,7 @@
                 verticalAlign: 'top',
                 align: 'center',
                 x: 0,
-                y: 0,
+                y: 10,
                 //labelFormat: '<span style="color:{color}">{name}</span> <b>{point.y}</b><br/>',
                 labelFormatter: function () {
                     if (this.point.y == undefined) {
@@ -187,30 +187,30 @@
                             return false;
                         },
                     },
-//                    point: {
-//                        events: {
-//                            mouseOver: function () {
-//                                var chart = this.series.chart;
-//                                if (!chart.lbl) {
-//                                    chart.lbl = chart.renderer.label('')
-//                                            .attr({
-//                                                padding: 10,
-//                                                r: 10,
-//                                                fill: Highcharts.getOptions().colors[1]
-//                                            })
-//                                            .css({
-//                                                color: '#FFFFFF'
-//                                            })
-//                                            .add();
-//                                }
-//                                chart.lbl
-//                                        .show()
-//                                        .attr({
-//                                            text: 'x: ' + this.x + ', y: ' + this.y
-//                                        });
-//                            },
-//                        }
-//                    },
+                    point: {
+                        events: {
+                            mouseOver: function () {
+                                var chart = this.series.chart;
+                                if (!chart.lbl) {
+                                    chart.lbl = chart.renderer.label('', document.documentElement.clientWidth / 2 - 30, 2)
+                                            .attr({
+                                                padding: 10,
+                                                r: 0,
+                                                zIndex: 9,
+                                            })
+                                            .css({
+                                                color: '#000000',
+                                            })
+                                            .add();
+                                }
+                                chart.lbl
+                                        .show()
+                                        .attr({
+                                            text: this.name
+                                        });
+                            },
+                        }
+                    },
                 },
             },
             series: [{
@@ -248,7 +248,7 @@
                 lineWidth: 1,
                 lineColor: spLineColor,
                 marker: {
-                    fillColor: spBackgrounpColor,
+                    fillColor: spBackgroundColor,
                     lineColor: spLineColor,
                 },
                 tooltip: {
@@ -263,8 +263,8 @@
                         y2: 1
                     },
                     stops: [
-                        [0, spBackgrounpColor],
-                        [1, Highcharts.Color(spBackgrounpColor).setOpacity(0).get('rgba')]
+                        [0, spBackgroundColor],
+                        [1, Highcharts.Color(spBackgroundColor).setOpacity(0).get('rgba')]
                     ]
                 },
             }, {
@@ -275,7 +275,7 @@
                 lineWidth: 1,
                 lineColor: hrLineColor,
                 marker: {
-                    fillColor: hrBackgrounpColor,
+                    fillColor: hrBackgroundColor,
                     lineColor: hrLineColor,
                 },
                 tooltip: {
@@ -290,8 +290,8 @@
                         y2: 1
                     },
                     stops: [
-                        [0, Highcharts.Color(hrBackgrounpColor).setOpacity(0).get('rgba')],
-                        [1, Highcharts.Color(hrBackgrounpColor).setOpacity(0).get('rgba')]
+                        [0, Highcharts.Color(hrBackgroundColor).setOpacity(0).get('rgba')],
+                        [1, Highcharts.Color(hrBackgroundColor).setOpacity(0).get('rgba')]
                     ]
                 },
             }]

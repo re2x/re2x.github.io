@@ -30,10 +30,10 @@ function formatLegendValue(name, color, value) {
 
 function formatDate(count, index, date) {
     if (index != 0 &&
-        index != count - 1 &&
+        //index != count - 1 &&
         count > 7) {
-        //大于7天,只显示10个
-        var interval = parseInt(Math.ceil(count / 10));
+        //大于7天,只显示7个
+        var interval = parseInt(Math.ceil(count / 7));
         if (index % interval != 0) {
             return "";
         }
