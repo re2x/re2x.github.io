@@ -304,57 +304,6 @@
         });
     }
 
-    function realDataTest() {
-        // 接口返回的数据
-        var result = {
-            "result": "0",
-            "allSum": "12",
-            "currentDayMoney": "0",
-            "currentDaySum": "6",
-            "currentMonthMoney": "0.0",
-            "reason": "",
-            "allMoney": "0",
-            "list": [{"day": "14", "money": "0", "month": "7", "sum": "6", "year": "2016"}, {
-                "day": "13",
-                "money": "0",
-                "month": "7",
-                "sum": "6",
-                "year": "2016"
-            }, {"day": "12", "money": "0", "month": "7", "sum": "0", "year": "2016"}, {
-                "day": "11",
-                "money": "0",
-                "month": "7",
-                "sum": "0",
-                "year": "2016"
-            }, {"day": "10", "money": "0", "month": "7", "sum": "0", "year": "2016"}, {
-                "day": "09",
-                "money": "0",
-                "month": "7",
-                "sum": "0",
-                "year": "2016"
-            }, {"day": "08", "money": "0", "month": "7", "sum": "0", "year": "2016"}],
-            "currentMonthSum": "12"
-        };
-        var dates = [];
-        var money = [];
-        var amount = [];
-        for (var i = 0; i < result.list.length; i++) {
-            var curItem = result.list[result.list.length - i - 1];
-            dates[i] = curItem.month + "-" + curItem.day;
-            money[i] = {
-                'name': dates[i],
-                'x': i,
-                'y': parseInt(curItem.money)
-            };
-            amount[i] = {
-                'name': dates[i],
-                'x': i,
-                'y': parseInt(curItem.sum)
-            };
-        }
-        loadChart(dates, money, amount);
-    }
-
     //获取url中的参数
     function getUrlParam(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
