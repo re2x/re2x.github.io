@@ -165,6 +165,12 @@
             },
             plotOptions: {
                 areaspline: {
+                    dataLabels: {
+                        enabled: getUrlParam("dl") != undefined,
+                        formatter:function () {
+                            return formatValue(this.series.name, this.series.color, this.y);
+                        }
+                    },
                     states: {
                         hover: {
                             lineWidth: 1,

@@ -1,5 +1,11 @@
 function formatLegendValue(name, color, value) {
-    var tmp = value;
+    var tmp = formatValue(name, color, value);
+    return '<span style="color:' + color + '">' +
+        name + '</span> <b>' + tmp + '</b><br/>';
+}
+
+function formatValue(name, color, value) {
+    var tmp = '<span style="color:' + color + '">' + value + '</span>';;
     var warnColor = "#F00000";
     if (name == "舒张压") {
         //TODO:实现完整算法
@@ -24,8 +30,7 @@ function formatLegendValue(name, color, value) {
             tmp = '<span style="color:' + warnColor + '">' + value + '↑</span>';
         }
     }
-    return '<span style="color:' + color + '">' +
-        name + '</span> <b>' + tmp + '</b><br/>';
+    return tmp;
 }
 
 function formatDate(count, index, date) {
