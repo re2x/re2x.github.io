@@ -26,19 +26,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ss-charts.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ss-charts.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ss-charts.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="272" column="37" selection-start-line="272" selection-start-column="37" selection-end-line="272" selection-end-column="37" />
+            <state relative-caret-position="389">
+              <caret line="85" column="14" selection-start-line="85" selection-start-column="13" selection-end-line="85" selection-end-column="14" />
               <folding>
-                <marker date="1470283869000" expanded="true" signature="4299:4305" ph="..." />
+                <marker date="1470288818000" expanded="true" signature="4316:4322" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data-formater.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="data-formater.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data-formater.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="365">
@@ -91,8 +91,8 @@
         <option value="$PROJECT_DIR$/value-in-legend.js" />
         <option value="$PROJECT_DIR$/charts-demo.html" />
         <option value="$PROJECT_DIR$/bp-charts.html" />
-        <option value="$PROJECT_DIR$/ss-charts.html" />
         <option value="$PROJECT_DIR$/data-formater.js" />
+        <option value="$PROJECT_DIR$/ss-charts.html" />
       </list>
     </option>
   </component>
@@ -254,12 +254,12 @@
       <option name="presentableId" value="Default" />
       <updated>1469583120424</updated>
       <workItem from="1469583122938" duration="5575000" />
-      <workItem from="1469598191773" duration="31059000" />
+      <workItem from="1469598191773" duration="31754000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36634000" />
+    <option name="totallyTimeSpent" value="37329000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="1276" height="777" extended-state="6" />
@@ -333,16 +333,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ss-charts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="272" column="37" selection-start-line="272" selection-start-column="37" selection-end-line="272" selection-end-column="37" />
-          <folding>
-            <marker date="1470283869000" expanded="true" signature="4299:4305" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data-formater.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="365">
@@ -382,6 +372,16 @@
             <marker date="1470284995000" expanded="true" signature="5103:5109" ph="..." />
             <marker date="1470284995000" expanded="true" signature="5275:5281" ph="..." />
             <marker date="1470284995000" expanded="true" signature="5399:5405" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ss-charts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="85" column="14" selection-start-line="85" selection-start-column="13" selection-end-line="85" selection-end-column="14" />
+          <folding>
+            <marker date="1470288818000" expanded="true" signature="4316:4322" ph="..." />
           </folding>
         </state>
       </provider>
