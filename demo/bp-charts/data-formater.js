@@ -38,7 +38,7 @@ function formatValue(name, color, value, ext) {
             } else if (value > 0.416) {
                 tmp = '<span style="color:' + warnColor + '">' + value + '↑</span>';
             }
-        } else if (ext == "男性") {
+        } else if (ext == "女性") {
             if (value < 0.089) {
                 tmp = '<span style="color:' + warnColor + '">' + value + '↓</span>';
             } else if (value > 0.357) {
