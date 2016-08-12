@@ -26,7 +26,7 @@ function rndMoney() {
 }
 
 function rndAmount() {
-  return rnd(10, 999);
+  return rnd(0, 999);
 }
 
 function createTestData() {
@@ -107,6 +107,7 @@ function loadChart(dates, money, amount) {
       offset: -15,
       zIndex: -1,
       gridLineColor: gridLineColor,
+      allowDecimals:false,
       labels: {
         style: {
           color: moneyLineColor,
@@ -124,6 +125,7 @@ function loadChart(dates, money, amount) {
       offset: -15,
       zIndex: -1,
       gridLineColor: gridLineColor,
+      allowDecimals:false,
       opposite: true,
       labels: {
         style: {
