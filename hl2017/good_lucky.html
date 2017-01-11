@@ -39,22 +39,6 @@
 
 <div id="lucky_name_list"></div>
 <script type="application/javascript">
-  function getParam(paramskey, defvalue) {
-    var reg = new RegExp("(^|&)" + paramskey + "=([^&]*)(&|$)");
-    console.log('getLocationParameter,window.location.search:' + window.location.search);
-    var search = window.location.search;//url参数串,如?data={}..
-    if (search) {
-      //将+替换成空格
-      search = search.replace(/\+/g, " ");
-    }
-    console.log('将+替换成空格后参数串:' + search);
-    var q = decodeURI(search);
-    var r = q.substr(1).match(reg);
-    if (r != null) return unescape(r[2]);
-    return defvalue;
-  }
-</script>
-<script type="application/javascript">
   var timer;
   var isStart = true;
   var startIndex = 0;
