@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>炅业决战2017大抽奖</title>
+  <style>
+    #lucky_name {
+      color: #f00;
+      font-size: 7rem;
+      height: 10rem;
+      line-height: 10rem;
+      text-align: center;
+    }
+
+    #lucky_name_list {
+      color: #f00;
+      font-size: 3rem;
+      line-height: 5rem;
+      text-align: center;
+      margin-top: 3em;
+    }
+
+    #lucky_btn {
+      margin-top: 3em;
+      width: 10em;
+      height: 5em;
+      border: 1px solid #ccc;
+      background: #eee;
+    }
+  </style>
+</head>
+<body>
+
+<div id="lucky_name"></div>
+
+<div style="margin: 0 auto; text-align: center; ">
+  <button id="lucky_btn" onclick="youAreLucky()">抽奖</button>
+</div>
+
+<div id="lucky_name_list"></div>
+<script type="application/javascript">
+  function getParam(paramskey, defvalue) {
+    var reg = new RegExp("(^|&)" + paramskey + "=([^&]*)(&|$)");
+    console.log('getLocationParameter,window.location.search:' + window.location.search);
+    var search = window.location.search;//url参数串,如?data={}..
+    if (search) {
+      //将+替换成空格
+      search = search.replace(/\+/g, " ");
+    }
+    console.log('将+替换成空格后参数串:' + search);
+    var q = decodeURI(search);
+    var r = q.substr(1).match(reg);
+    if (r != null) return unescape(r[2]);
+    return defvalue;
+  }
+</script>
+<script type="application/javascript">
+  var timer;
+  var isStart = true;
+  var startIndex = 0;
+  var name_list = ["佘梅香", "梁福欣", "林少洪", "刘颖", "李浩", "温建", "闵暮燃", "容达", "成世勇", "温成柱", "戴大红", "钟锦昌", "徐志华", "唐建维", "李承辉", "陈春柳", "罗石仙", "罗明", "刘业", "梁建明", "卞惠棠", "徐小玲", "贾方方", "刘继来", "刘清林", "肖福捷", "罗洁芝", "张珏宜", "吴游", "林秋样", "张树山", "汪超", "张佳维", "邝晓霞", "张婷婷", "蔡开振", "郑强", "王美莹", "陈晓明", "李福政", "李立新", "周健辉", "李荣杰", "林泽群", "张军", "田标", "王了", "曹颖平", "嵇璇", "方波", "王瀚", "刘兆晖", "苏浪", "胡如根", "李胜楠", "陈穗源", "罗旋", "余春生", "陈雪婷", "江思浩", "吴李荣", "刘冠睿", "叶少杰", "罗彬", "欧澍仁", "林奕欣", "周艳文", "陈林菁", "张兵", "雷朝阳", "张平威", "庞田文", "刘泽伟", "陈琪", "陈朴真", "黄德强", "全海云", "孙玉静", "侯龙山", "陆炯忠", "叶志康", "孙恭祥", "霍靖茹", "汪玉生", "韦海胜", "麦晓东", "古胜丁", "彭春平", "符敬", "廖品佳", "吴国生", "刘欢(男)", "罗湖南", "廖耀坤", "莫凡", "张耀杰", "王明亮", "周国", "范琳芳", "罗燕飞", "邓才辉", "王丹", "陈捷", "杜龙", "郑洁璇", "罗泽全黄燕红", "刘超", "鲍凌", "郑慧芳", "万静", "罗琴", "谢万德", "陈媚", "谢霆宇", "朱丹", "邓小惠", "陈凤仪", "陈思维", "杨琼翔", "刘欢(女)", "谢惠芬", "李丽燕", "张连", "吕玉健", "陈兆军", "李斌", "陈良辉", "何攀攀", "陈文光", "谭学武", "江辉远", "周四连", "雷玉林", "缪华乔", "梁月容", "包政达", "尤永坚", "梁梓俊", "邱璿", "李英俊", "陈丽嘉", "林洁生", "王彪", "谢春桃", "陈炳文", "吴思源", "全智鹏", "许安然", "朱文斌", "余杨兴", "蔡宇健", "林伦泳", "王达基", "吴辉", "杨新猷", "陈楠", "陈永全", "郑康祥", "陈小津", "戴治峰", "黄海军", "吴黄彪", "李贵发", "李国炜", "邹瑜", "李志德", "廖宇盛", "黄晓东", "朱豹", "万海亮", "郑锦铭", "梅鑫城", "何振东", "翟惠杰", "黄涛", "罗蜀粤", "谢仕程", "孟江涛", "李春城", "吴天益", "宋禹", "王纬纶", "邹继生", "李治频", "黄小龙", "吴明才", "韩智杰", "吴强", "巫志威", "符力", "朱靖基", "谢世平", "张杰", "陈博李许海", "黄建惟", "刘俊(产品中心)", "朱伟明", "甘艳", "朱超明", "林观铃", "黄丽霞", "万卓", "叶浩满", "李良杰", "陆汉星", "陈清妹", "陈梓轩", "范奕冰", "卢誉中", "李英霞", "张奇开", "潘灿", "刘博彦", "李孔迎", "程泽伟", "王展鸿", "刘俊(研发中心)", "李乐强", "蒋锐", "陈华", "朱锋华", "陈煜坤", "刘庆富", "苏雨顺", "徐进军", "林俊旭", "杨芳", "李超", "刘超红", "危志勇", "骆周平", "龙向坤", "张忠良", "杨农毅", "蔡思易", "蒙泽平", "金晶", "罗博椿", "李广", "潘永恒", "邓诗颖", "冯泠殷", "刘海燕", "陈裕鹏", "赵德玉", "林登坤", "邱红", "蔡祥伟", "梁栋元", "伍宇航", "黄彬", "卢佑汉", "谢锦南", "江汉朝", "戴厚发", "文亮", "范魏权", "林书培", "钟桂国", "刘庆珲", "向功福", "曾家勇", "苏灿生", "赖兆世", "康李深", "廖文连", "梁能勇", "陈晓聪", "李树冰", "曾晗明", "蓝云洲", "林海斌", "林贻鸿", "朱荣芳", "叶维权", "梁国庆", "陈志明", "冯嘉毅", "黎招辉", "黄华亮", "陈平优", "龚达武", "杨玉锦", "钟丽珠", "张宇欣", "李影霞", "林玄禹", "陈敏健", "周阳", "徐楷皓", "谢海望", "叶东麟", "黄丽云", "傅晓琳", "庄浩生", "梁剑标", "廖思幸", "巫锋", "陈志武", "陆永快", "吴晓军", "黄赟", "刘德智", "黄先桃", "林海波(运营中心)", "邓学升", "杨龙声", "黄怡菲", "莫惠雯", "李丽", "吴汶键", "曾继红", "陈冠丞", "唐桂秋", "李玉双", "余显良", "洪专文", "邱永槐", "倪龙昌", "杨振"];
+  var vip_list = ["王炅", "王昊", "王珺", "李聚晖", "上官建强", "杨晨", "付少云"];
+  var luckyArray = [];
+  var vipLuckyArray = [];
+  var cur_index = 0;
+  var cur_vip_index = 0;
+  var rnd = Math.random();
+
+  function startRnd() {
+    startIndex = Math.ceil(rnd * name_list.length);
+    cur_index = 0;
+    cur_vip_index = 0;
+    luckyArray = [];
+    vipLuckyArray = [];
+    timer = setTimeout("newLuckyName()", 50);
+  }
+
+  function newLuckyName() {
+    if (isStart) {
+
+      do {
+        cur_index = startIndex++ % name_list.length;
+      } while (luckyArray.indexOf(cur_index) != -1)
+
+      if (vipLuckyArray.length == vip_list.length) {
+        alert("人品大爆发!!\r\n\r\n你抽中的都是老板!!!!!\r\n你抽中的都是老板!!!!!\r\n你抽中的都是老板!!!!!");
+        isStart = true;
+        clearTimeout(timer);
+        return;
+      }
+      do {
+        cur_vip_index = startIndex++ % vip_list.length;
+      } while (vipLuckyArray.indexOf(cur_vip_index) != -1)
+
+      document.getElementById("lucky_name").innerText = name_list[cur_index];
+      timer = setTimeout("newLuckyName()", 50);
+    }
+  }
+
+  function youAreLucky() {
+    if (isStart) {
+      isStart = false;
+      clearTimeout(timer);
+      if (window.location.search.indexOf("LaoBanZhongDaJiang") != -1 || (Math.ceil(Math.random() * 5) == 2)) {
+        // 保证抽到老板们!!!!!
+        vipLuckyArray.push(cur_vip_index);
+        document.getElementById("lucky_name").innerText = vip_list[cur_vip_index];
+        document.getElementById("lucky_name_list").innerText += vip_list[cur_vip_index] + "、";
+      } else {
+        luckyArray.push(cur_index);
+        document.getElementById("lucky_name_list").innerText += name_list[cur_index] + "、";
+      }
+      document.getElementById("lucky_btn").innerText = "继续抽奖";
+    } else {
+      isStart = true;
+      document.getElementById("lucky_btn").innerText = "抽奖";
+      timer = setTimeout("newLuckyName()", 50);
+    }
+  }
+
+  startRnd();
+</script>
+
+</body>
+</html>
